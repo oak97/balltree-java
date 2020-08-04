@@ -36,7 +36,8 @@
 
 （1）根据点集构造最小超球体，参考论文[1]中提到的BC算法构造的近似最小超球体。实际使用中，设置迭代次数为1000，速度较快，计算结果可以接受。
 
-（2）构造按照老师ppt上提供的构造方法，实现KNN是参照维基百科球树[2]搜索部分的伪代码。
+（2）构造按照老师ppt上提供的构造方法，见下图，实现KNN是参照维基百科球树[2]搜索部分的伪代码。
+<div align=center><img src="./pics/balltree-construct.png" alt="balltree-construct" width="60%" height="60%" /></div>
 
 （3）总样本数4898，其中重复样本有937。因为这样计算距离的时候是0，我们认为只有自身和自身距离为0，而两条记录哪怕完全相同也是不同个体，因为可能有特征没有观测到，所以只能说距离非常近，接近0。故我们将重复样本的距离设置为一个非零的极小值（0.000001）。
 
@@ -63,11 +64,11 @@
 
 - 找邻居时：球树通过使用三角不等式减少近邻搜索的候选点数，减少搜索空间。通过这种设置, 测试点和质心之间的单一距离计算足以确定距节点内所有点的距离的下限和上限。球树得到的是节点样本组成的最小**超球体**，而KD树得到的是节点样本组成的**超矩形体**，这个超球体要比对应的KD树的超矩形体小，这样在做最近邻搜索的时候，可以避免一些无谓的搜索。
 
-<div align=center><img src="./pics/kdtree.png" alt="kdtree" width="20%" height="20%" /></div>
+<div align=center><img src="./pics/kdtree.png" alt="kdtree" width="40%" height="40%" /></div>
 
 
 
-<div align=center><img src="./pics/balltree.png" alt="balltree" width="20%" height="20%" /></div>
+<div align=center><img src="./pics/balltree.png" alt="balltree" width="40%" height="40%" /></div>
 
 （2）分析适用情况
 
